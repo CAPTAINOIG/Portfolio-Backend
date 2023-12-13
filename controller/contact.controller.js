@@ -22,14 +22,15 @@ const contact = (req, res) => {
   var mailOptions = {
     from: req.body.email,
     to: 'abdullahisamsudeen@gmail.com',
-    subject: `${req.body.name} checked your portfolio.`,
-    text: `Message from: ${req.body.message} and my email is ${req.body.email}
+    subject: `${req.body.fullName} checked your portfolio.`,
+    text: `Message from ${req.body.fullName}: ${req.body.message} and my email is ${req.body.email}
     `
   };
   
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
       console.log(error);
+      // res.status(500).json({ message: 'Error occur while sending email', status: false });
     } else {
       console.log('Email sent: ' + info.response);
       res.send({status:true, message: "Mail sent Successfully"})
