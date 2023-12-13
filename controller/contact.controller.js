@@ -11,7 +11,7 @@ const contact = (req, res) => {
     port: 465,
     secure: true,
     auth: {
-      user: 'abdullahisamsudeen@gmail.com',
+      user: process.env.USERMAIL,
       pass: process.env.PASS
     },
     tls: {
@@ -32,6 +32,7 @@ const contact = (req, res) => {
       console.log(error);
     } else {
       console.log('Email sent: ' + info.response);
+      res.send({status:true, message: "Mail sent Successfully"})
     }
   });;
 }
